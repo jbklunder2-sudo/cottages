@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Large One Bedroom Cottage</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="nav-container">
+        <a href="index.html" class="logo">Wasaga Sunset Cottages</a>
+
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cottages.html">Cottages</a></li>
+                <li><a href="rates.html">Rates & Availability</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="booking.html">Booking</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+
+        <button class="hamburger" id="hamburger-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+    </div>
+</header>
+
+<div id="dynamic-banner"></div>
+
+<main class="content">
+    <section class="page-section">
+        <h1>Large One Bedroom Cottage</h1>
+
+        <!-- 
+            <div class="cottage-video-thumb">
+                <a href="https://www.youtube.com/watch?v=4YMqa3F58n8" target="_blank">
+                    <img src="https://img.youtube.com/vi/4YMqa3F58n8/hqdefault.jpg" alt="Cottage Video Tour">
+                </a>
+            </div>
+        -->    
+           <h3> 4 guests · 1 bedroom · 2 beds · 1 bath</h3>
+
+           
+        <p>Just a quick stroll from the world’s largest freshwater beach, this bright and comfortable one‑bedroom cottage 
+            is the perfect place to unwind. Sip your coffee on the front deck and enjoy the sound of the waves. The cottage 
+            includes a full kitchen with a full‑size fridge and stove, a pull‑out couch for extra sleeping space, and 
+            everything you need for a simple, relaxing stay.
+
+            Beach 1 is only moments away, offering great restaurants, surf shops, and plenty to explore. Please remember to bring 
+            your own bedding. All cottages are professionally cleaned before each guest arrives.</p>
+
+        <h2>Amenities</h2>
+        <ul>
+            <li>Wi-Fi</li>
+            <li>Full kitchen</li>
+            <li>Private deck</li>
+            <li>Lake access</li>
+        </ul>
+
+        <!--
+
+        <img src="images/cottage1/cottage1_livingroom1.JPEG" class="hero-img" alt="Living Room">
+        <img src="images/cottage1/cottage1_bedroom.JPEG" class="hero-img" alt="Bedroom">
+       
+        <img src="images/cottage1/cottage1_washroom.JPEG" class="hero-img" alt="Washroom">
+        <img src="images/cottage1/cottage1_patio.JPEG" class="hero-img" alt="cottage1_patio">
+        <img src="images/cottage1/cottage1_livingroom2.JPEG" class="hero-img" alt="Living Room">
+
+    -->
+
+    <!-- Newly added code to put the pictures in a grid rather than single as it is too big and overwhelming. 2026 Nov 16-->
+    <div class="cottage-gallery-grid">
+    
+    <img src="images/cottage1/cottage1_livingroom1.JPEG" class="hero-img gallery-image" alt="Living Room">
+    <img src="images/cottage1/cottage1_bedroom.JPEG" class="hero-img gallery-image" alt="Bedroom">
+    <img src="images/cottage1/cottage1_washroom.JPEG" class="hero-img gallery-image" alt="Washroom">
+    <img src="images/cottage1/cottage1_patio.JPEG" class="hero-img gallery-image" alt="Patio">
+    <img src="images/cottage1/cottage1_livingroom2.JPEG" class="hero-img gallery-image" alt="Living Room">
+
+    </div>
+
+        <h2>Availability</h2>
+
+        <div class="calendar-controls">
+            <button type="button" class="cal-prev" data-cottage="c1">Previous</button>
+            <button type="button" class="cal-next" data-cottage="c1">Next</button>
+        </div>
+
+        <div class="three-month-wrapper">
+
+            <div class="single-month">
+                <span class="cal-month-label" id="month-label-c1-0"></span>
+                <div id="calendar-c1-0" class="calendar"></div>
+            </div>
+
+            <div class="single-month">
+                <span class="cal-month-label" id="month-label-c1-1"></span>
+                <div id="calendar-c1-1" class="calendar"></div>
+            </div>
+
+            <div class="single-month">
+                <span class="cal-month-label" id="month-label-c1-2"></span>
+                <div id="calendar-c1-2" class="calendar"></div>
+            </div>
+
+        </div>
+
+        <div class="calendar-legend">
+            <span class="legend-airbnb">🟦 Airbnb</span>
+            <span class="legend-direct">🟩 Direct Booking</span>
+        </div>
+
+       
+</div>
+
+    </section>
+</main>
+
+<footer class="site-footer">
+    <p>© 2026 Wasaga Sunset Cottages — All Rights Reserved</p>
+</footer>
+
+<script src="js/calendar.js"></script>
+<script src="js/ical.js"></script>
+<script src="js/cottages.js"></script>
+
+<script>
+    const cottageId = "c1";
+    const cottage = cottages.find(c => c.id === cottageId);
+    const cottageMonthOffsets = { c1: 0 };
+
+    function loadThreeMonths() {
+        for (let m = 0; m < 3; m++) {
+            loadMergedCalendar(
+                [cottage.airbnbIcal],
+                `calendar-${cottageId}-${m}`,
+                cottageId,
+                cottageMonthOffsets[cottageId] + m,
+                `month-label-${cottageId}-${m}`
+            );
+        }
+    }
+
+    document.querySelector(".cal-prev").addEventListener("click", () => {
+        cottageMonthOffsets[cottageId]--;
+        loadThreeMonths();
+    });
+
+    document.querySelector(".cal-next").addEventListener("click", () => {
+        cottageMonthOffsets[cottageId]++;
+        loadThreeMonths();
+    });
+
+    loadThreeMonths();
+</script>
+
+<script src="js/banner.js"></script>
+<script src="js/menu.js"></script>
+
+<!-- Added this to change the photos in the cottages tab to put in the grid style than just big ones -->
+
+<div class="lightbox" id="lightbox">
+    <button class="lightbox-prev">&#10094;</button>
+
+    <img id="lightbox-img" src="" alt="">
+
+    <button class="lightbox-next">&#10095;</button>
+</div>
+
+<script src ="js/lightbox.js"></script>
+
+</body>
+</html>
